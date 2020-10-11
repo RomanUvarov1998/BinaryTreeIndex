@@ -8,7 +8,7 @@ int main() {
         return 1;
     }
 
-    char cmd[1] = {0}, out_buf[100];
+    char cmd[1] = {0}, value_buf[100];
     int key = 0;
     enum IndexOperationResult result;
 
@@ -20,15 +20,20 @@ int main() {
         switch (*cmd) {
             case 'a': // add
                 scanf("%i", &key);
+                scanf("%s", value_buf);
                 printf("Adding for key %i:\n\r", key);
-                result = try_add_value(index, key, "value");
+
+                result = try_add_value(index, key, value_buf);
                 print_result(result);
                 break;
             case 'f': // add
                 scanf("%i", &key);
                 printf("Searching for key %i:\n\r", key);
-                result = try_find_value(index, key, out_buf);
+                result = try_find_value(index, key, value_buf);
                 print_result(result);
+                if (result == FoundNodeSawValue) {
+                    printf("Found value: %s\n\r", value_buf);
+                } 
                 break;
             case 'e': // add
                 printf("Exiting...\n\r");
