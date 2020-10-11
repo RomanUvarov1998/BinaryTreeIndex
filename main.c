@@ -7,10 +7,26 @@ int main() {
         return 1;
     }
 
-    char inp[500];
-    while (1) {
-        scanf("%5s", inp);
-        printf("Hello, %s!\n\r", inp);
+    char cmd[1] = {0};
+    while (*cmd != 'e') {
+        *cmd = 0;
+        printf("cmd> ");
+        scanf("%s", cmd);
+
+        switch (*cmd) {
+            case 'a': // add
+                printf("Adding...\n\r");
+                break;
+            case 'f': // add
+                printf("Finding...\n\r");
+                break;
+            case 'e': // add
+                printf("Exiting...\n\r");
+                break;
+            default:
+                printf("Usage: 'a' - add, 'f' - find, 'e' - exit\n\r");
+                break;
+        }
     }
     
     free_node(index);
