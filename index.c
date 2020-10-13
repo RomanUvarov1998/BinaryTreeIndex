@@ -47,6 +47,7 @@ void free_node(struct node_t *node) {
 enum IndexOperationResult 
 try_add_value(struct node_t *root, uint32_t key, const char *content) {
     if (root == NULL) return NullRootErr;
+    if (key == 0) return KeyMustBeGreaterThanZero;
 
     struct node_t *current_node = root, **next_node_p;
     uint32_t current_key = key;
@@ -78,6 +79,7 @@ try_add_value(struct node_t *root, uint32_t key, const char *content) {
 enum IndexOperationResult 
 try_find_value(struct node_t *root, uint32_t key, char *out) {
     if (root == NULL) return NullRootErr;
+    if (key == 0) return KeyMustBeGreaterThanZero;
 
     struct node_t *current_node = root;
     uint32_t current_key = key;
@@ -103,6 +105,7 @@ try_find_value(struct node_t *root, uint32_t key, char *out) {
 }
 
 static char *ErrorMsgs[] = {
+    "KeyMustBeGreaterThanZero",
     "NullRootErr",
     "NullContentToAddErr",
     "NewNodeMallocErr",

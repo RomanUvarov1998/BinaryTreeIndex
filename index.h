@@ -14,6 +14,7 @@
     void free_node(struct node_t *node);
 
     enum IndexOperationResult {
+        KeyMustBeGreaterThanZero,
         NullRootErr,
         NullContentToAddErr,
         NewNodeMallocErr,
